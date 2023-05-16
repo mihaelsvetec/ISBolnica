@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ISBolnicaDAL.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ISBolnicaDAL.DataAccess;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ISBolnicaDAL.DataAccess;
+namespace ISBolnicaDAL.DataAccess.Entities;
 
 public partial class MedicinskiProizvod
 {
