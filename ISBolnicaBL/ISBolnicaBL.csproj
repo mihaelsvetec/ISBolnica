@@ -18,4 +18,8 @@
     <ProjectReference Include="..\ISBolnicaDAL\ISBolnicaDAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="PovijestBolesti\" />
+  </ItemGroup>
+
 </Project>
