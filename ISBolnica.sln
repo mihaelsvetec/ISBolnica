@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISBolnicaBL", "ISBolnicaBL\ISBolnicaBL.csproj", "{60E357A5-DE2E-434E-87E4-AF5E20F755CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISBolnicaBL", "ISBolnicaBL\ISBolnicaBL.csproj", "{60E357A5-DE2E-434E-87E4-AF5E20F755CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISBolnicaDAL", "ISBolnicaDAL\ISBolnicaDAL.csproj", "{348DFE02-0D75-4078-9458-A0E332AD1880}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISBolnicaDAL", "ISBolnicaDAL\ISBolnicaDAL.csproj", "{348DFE02-0D75-4078-9458-A0E332AD1880}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
