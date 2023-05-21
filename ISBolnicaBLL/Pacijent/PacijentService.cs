@@ -169,7 +169,7 @@ namespace ISBolnicaBLL.Pacijent
         }
 
         #region Helper methods
-        private bool ValidateOib(string oib)
+        public bool ValidateOib(string oib)
         {
             var a = 10;
             for (var i = 0; i < 10; i++)
