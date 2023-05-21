@@ -1,0 +1,120 @@
+﻿@model ISBolnicaBLL.Pacijent.AddPacijent
+
+@{
+    ViewBag.Title = "Novi pacijent";
+}
+<br />
+<h2>@ViewBag.Title</h2>
+
+
+<div class="row">
+    <div class="col-4">
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label asp-for="Oib">OIB</label>
+                <div><span asp-validation-for="Oib" class="text-danger" /></div>
+
+                <input asp-for="Oib" class="form-control" value="@Model?.Oib" />
+
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Ime">Ime</label>
+                <div><span asp-validation-for="Ime" class="text-danger" /></div>
+
+                <input asp-for="Ime" class="form-control" value="@Model?.Ime" />
+
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Prezime">Prezime</label>
+                <div><span asp-validation-for="Prezime" class="text-danger" /></div>
+
+                <input asp-for="Prezime" class="form-control" value="@Model?.Prezime" />
+
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Spol">Spol</label>
+                <div><span asp-validation-for="Spol" class="text-danger" /></div>
+
+                <select class="form-control" asp-for="Spol">
+                    <option disabled selected value="">Odaberite spol</option>
+                    <option value="M">Muški</option>
+                    <option value="F">Ženski</option>
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="DatumRodenja">Datum rođenja</label>
+                <div><span asp-validation-for="DatumRodenja" class="text-danger" /></div>
+                <input asp-for="DatumRodenja" class="form-control" value="@Model?.DatumRodenja" />
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="KrvnaGrupa">Krvna grupa</label>
+                <div><span asp-validation-for="KrvnaGrupa" class="text-danger" /></div>
+
+                <select class="form-control" asp-for="KrvnaGrupa">
+                    <option disabled selected value="">Odaberite krvnu grupu</option>
+                    <option value="0+">0+</option>
+                    <option value="0-">0-</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Alergije">Alergije</label>
+                <div><span asp-validation-for="Alergije" class="text-danger" value="@Model?.Alergije" /></div>
+
+                <input asp-for="Alergije" class="form-control" />
+
+            </div>
+            <br />
+            <br />
+            <div class="text-center">
+                <button class="btn btn-primary" type="submit">Dodaj</button>
+                <a asp-action="Index" class="btn btn-secondary">Odustani</a>
+            </div>
+        </form>
+    </div>
+    <div class="col-4">
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            var errors = ViewBag.Message.Split('\n');
+            <center>
+                @foreach (var error in errors)
+                {
+                    <p style="background-color:pink; color:red;">@error</p>
+                }
+            </center>
+        }
+    </div>
+</div>
+@*
+<script>
+    function myFunction() {
+      var x = document.getElementById("kontrolor");
+      var y = document.getElementById("serviser");
+      var sel = document.getElementById("sel");
+      var seldiv = document.getElementById("seldiv");
+      if (sel.value == "0") {
+        x.style.display = "block";
+        y.style.display = "none";
+        seldiv.style.display = "block";
+      } else {
+        x.style.display = "none";
+        y.style.display = "block";
+        seldiv.style.display = "block";
+        }
+    }
+</script>*@
+
+@section scripts {
+    <partial name="Validation" />
+}

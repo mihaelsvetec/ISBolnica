@@ -1,0 +1,37 @@
+﻿@model ISBolnicaMVC.Terapija.TerapijeVM
+
+@{
+    ViewBag.Title = "Terapije";
+}
+<br />
+<h2>@ViewBag.Title</h2>
+
+<a asp-action="Create" asp-controller="Terapija" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Dodaj terapiju</a>
+<br />
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Unesite željenu stranicu"
+       class="float-end">
+</pager>
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Opis</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var terapija in Model.Terapijas)
+        {
+            <tr>
+                <td>@terapija.TerapijaId</td>
+                <td>@terapija.Terapija</td>
+                <td><a asp-action="Delete" asp-route-id="@terapija.TerapijaId" class="btn btn-sm btn-danger"><i class="fa">Obriši</i></a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+}

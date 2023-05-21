@@ -1,0 +1,25 @@
+﻿@model ISBolnicaBLL.Terapija.AddTerapija
+
+@{
+    ViewBag.Title = "Nova terapija";
+}
+<br />
+<h2>@ViewBag.Title</h2>
+
+
+<div class="row">
+    <div class="col-4">
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label asp-for="Opis">Opis</label>
+                <div><span asp-validation-for="Opis" class="text-danger" /></div>
+
+                <input asp-for="Opis" class="form-control" />
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary" type="submit">Dodaj</button>
+                <a asp-action="Index" class="btn btn-secondary">Odustani</a>
+            </div>
+        </form>
+    </div>
+</div>

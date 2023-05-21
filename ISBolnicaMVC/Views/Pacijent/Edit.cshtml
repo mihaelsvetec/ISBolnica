@@ -1,0 +1,80 @@
+﻿@model ISBolnicaBLL.Pacijent.PacijentDetail
+
+@{
+    ViewBag.Title = "Detalji pacijenta";
+}
+
+<br />
+<h2>@ViewBag.Title</h2>
+
+<br />
+
+<div class="row">
+    <div class="col-3"><p><b>Ime:</b></p></div>
+    <div class="col-3"><p>@Model.Ime</p></div>
+</div>
+<div class="row">
+    <div class="col-3"><p><b>Prezime:</b></p></div>
+    <div class="col-3"><p>@Model.Prezime</p></div>
+</div>
+<div class="row">
+    <div class="col-3"><p><b>OIB:</b></p></div>
+    <div class="col-3"><p>@Model.Oib</p></div>
+</div>
+<div class="row">
+    <div class="col-3"><p><b>Datum rođenja:</b></p></div>
+    <div class="col-3"><p>@Model.DatumRodenja.ToString("dd.MM.yyyy.")</p></div>
+</div>
+<div class="row">
+    <div class="col-3"><p><b>Spol:</b></p></div>
+    <div class="col-3"><p>@Model.Spol</p></div>
+</div>
+<div class="row">
+    <div class="col-3"><p><b>Krvna grupa:</b></p></div>
+    <div class="col-3"><p>@Model.KrvnaGrupa</p></div>
+</div>
+<div class="row">
+    <div class="col-3"><p><b>Alergije:</b></p></div>
+    <div class="col-3"><p>@Model.Alergije</p></div>
+</div>
+
+<br />
+<br />
+<br />
+
+<h5>Povijesti bolesti</h5>
+
+<a asp-controller="PovijestBolesti" asp-route-pacijentId="@Model.PacijentId" asp-action="Edit" class="btn btn-sm btn-primary">Stvori</a>
+<br />
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Otvoreno</th>
+            <th>Zatvoreno</th>
+            <th>Sažetak</th>
+            <th>Doktor</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pb in Model.PovijestiBolesti)
+        {
+            <tr>
+                <td>@pb.PovijestBolestiId</td>
+                <td class="text-left">@pb.VrijemeOtvaranja.ToString("HH:mm dd.MM.yyyy.")</td>
+                <td class="text-left">
+                    @if (pb.VrijemeZatvaranja.HasValue)
+                    {
+                        <p>@pb.VrijemeZatvaranja.Value.ToString("HH:mm dd.MM.yyyy.")</p>
+                    }
+                </td>
+                <td>@pb.Sazetak</td>
+                <td>@pb.Doktor</td>
+                <td><a asp-controller="PovijestBolesti" asp-action="Edit" asp-route-pacijentId="@Model.PacijentId" asp-route-id="@pb.PovijestBolestiId" class="btn btn-sm btn-primary"><i class="fa">Detalji</i></a></td>
+                <td><a asp-controller="PovijestBolesti" asp-action="Delete" asp-route-pacijentId="@Model.PacijentId" asp-route-id="@pb.PovijestBolestiId" class="btn btn-sm btn-danger"><i class="fa">Obriši</i></a></td>
+            </tr>
+        }
+    </tbody>
+</table>

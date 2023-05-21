@@ -23,6 +23,8 @@ public partial class PovijestBolesti
 
     public int? SobaId { get; set; }
 
+    public int? TerapijaId { get; set; }
+
     public virtual Zaposlenik? Doktor { get; set; }
 
     public virtual Pacijent? Pacijent { get; set; }

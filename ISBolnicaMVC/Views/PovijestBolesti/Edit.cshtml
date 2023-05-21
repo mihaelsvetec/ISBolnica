@@ -1,0 +1,127 @@
+﻿@using ISBolnicaBLL.PovijestBolesti
+@model ISBolnicaBLL.PovijestBolesti.PovijestBolestiDetail
+
+@{
+    ViewBag.Title = "Povijest bolesti";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-4">
+        <form asp-action="Edit" method="post">
+
+            <input hidden asp-for="PovijestBolestiId" class="form-control" value="@Model?.PovijestBolestiId" />
+            <input hidden asp-for="PacijentId" class="form-control" value="@Model?.PacijentId" />
+            <div>
+                <p><b>@Model.Pacijent</b></p>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Sazetak">Sažetak</label>
+                <div><span asp-validation-for="Sazetak" class="text-danger" /></div>
+
+                <input asp-for="Sazetak" class="form-control" value="@Model?.Sazetak" />
+
+            </div>
+            <br />
+            @if (Model.PovijestBolestiId != 0)
+            {
+                <div>
+                    <p>Otvoreno: @Model.VrijemeOtvaranja.ToString("HH:mm dd.MM.yyyy.")</p>
+                </div>
+                <br />
+            }
+            @if (Model.VrijemeZatvaranja.HasValue)
+            {
+                <div>
+                    <p>Zatvoreno: @Model.VrijemeZatvaranja.Value.ToString("HH:mm dd.MM.yyyy.")</p>
+                </div>
+                <br />
+            }
+            <div class="form-group">
+                <label asp-for="Simptomi">Simptomi</label>
+                <div><span asp-validation-for="Simptomi" class="text-danger" /></div>
+
+                <input asp-for="Simptomi" class="form-control" value="@Model?.Simptomi" />
+
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Dijagnoza">Dijagnoza</label>
+                <div><span asp-validation-for="Dijagnoza" class="text-danger" /></div>
+
+                <input asp-for="Dijagnoza" class="form-control" value="@Model?.Dijagnoza" />
+
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="DoktorId">Doktor</label>
+                <div><span asp-validation-for="DoktorId" class="text-danger" /></div>
+
+                <select class="form-control" asp-for="DoktorId">
+                    <option disabled selected value="">Odaberite doktora</option>
+                    @foreach (var d in @ViewData["Doktors"] as IList<DoktorVM>)
+                    {
+                        <option value="@d.DoktorId">@d.Doktor</option>
+                    }
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="SobaId">Soba</label>
+                <div><span asp-validation-for="SobaId" class="text-danger" /></div>
+
+                <select class="form-control" asp-for="SobaId">
+                    <option disabled selected value="">Odaberite sobu</option>
+                    @foreach (var s in @ViewData["Sobas"] as IList<SobaVM>)
+                    {
+                        <option value="@s.SobaId">@s.Soba</option>
+                    }
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="TerapijaId">Terapija</label>
+                <div><span asp-validation-for="TerapijaId" class="text-danger" /></div>
+
+                <select class="form-control" asp-for="TerapijaId">
+                    <option disabled selected value="">Odaberite terapiju</option>
+                    @foreach (var t in @ViewData["Terapijas"] as IList<TerapijaVM>)
+                    {
+                        <option value="@t.TerapijaId">@t.Terapija</option>
+                    }
+                </select>
+            </div>
+            <br />
+            <br />
+            <div class="text-center">
+                @if (!Model.VrijemeZatvaranja.HasValue)
+                {
+                    <button class="btn btn-primary" type="submit">Spremi</button>
+                }
+                <a asp-controller="Pacijent" asp-action="Edit" asp-route-id="@Model.PacijentId" class="btn btn-secondary">Povratak</a>
+                @if (!Model.VrijemeZatvaranja.HasValue && Model?.PovijestBolestiId != 0)
+                {
+                    <a asp-controller="PovijestBolesti" asp-action="Close" asp-route-pacijentId="@Model.PacijentId" asp-route-id="@Model.PovijestBolestiId" class="btn btn-danger">Zatvori povijest bolesti</a>
+                }
+            </div>
+        </form>
+    </div>
+    <div class="col-4">
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            var errors = ViewBag.Message.Split('\n');
+            <center>
+                @foreach (var error in errors)
+                {
+                    <p style="background-color:pink; color:red;">@error</p>
+                }
+            </center>
+        }
+    </div>
+</div>
+
+@section scripts {
+    <partial name="Validation" />
+}
